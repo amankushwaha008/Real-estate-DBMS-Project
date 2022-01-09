@@ -1,0 +1,796 @@
+CREATE TABLE Agent(
+a_id INTEGER(5) NOT NULL,
+a_name varchar(30) NOT NULL,
+a_email varchar(50),
+a_ph_no BIGINT,
+a_add varchar(100),
+PRIMARY KEY (a_id)
+);
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+desc Agent;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| a_id    | int          | NO   | PRI | NULL    |       |
+| a_name  | varchar(30)  | NO   |     | NULL    |       |
+| a_email | varchar(50)  | YES  |     | NULL    |       |
+| a_ph_no | bigint       | YES  |     | NULL    |       |
+| a_add   | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+
+insert into agent(a_id, a_name, a_email, a_ph_no, a_add) values
+(10101, 'Jonas Kahnwald', 'jonaskahnwald@gmail.com', 9977647000, '11/2, Pubali Path, santipur , Guwahati, Assam'),
+(10102, 'Martha Nielson', 'marthanielson@gmail.com', 9977649000, '11/2, Mathgharia, Janata Path, Mother Teresa Road, Guwahati, Assam'),
+(10103, 'Charlotte Doppler', 'charlottedoppler@gmail.com', 9977651000, '11/2, KRB Road, Railway colony, Bamunimaidan, Guwahati'),
+(10104, 'Subba Sai Abhiram', 'subbasaiabhiram@gmail.com', 9977653000, '11/2, Zoo Road Tiniali, sugam path, Guwahati, Assam'),
+(10105, 'Harsh Chenani', 'harshchenani@gmail.com', 9977655000, '11/2,  Anil Nagar, Rajgarh link Road,  Nabin Nagar, Guwahati , Assam'),
+(10106, 'Kurra Chandrashekar ', 'kurrachandrashekar@gmail.com', 9977657000, '11/2, Srimantapur, Chilarai Nagar, Guwahati, Assam'),
+(10107, 'Aman Kushwaha', 'amankushwaha@gmail.com', 9977659000, '11/2, Chatribari Road, Chatribari, Guwahati, Assam'),
+(10108, 'Louis Hofmann', 'louishofmann@gmail.com', 9977661000, '11/2, Lakhtokia, Fancy Bazar, Guwahati, Assam'),
+(10109, 'Nele Trebs', 'neletrebs@gmail.com', 9977665000, '11/2, Arunodhaii Path, Narayan Nagar, Kumarpara, Guwahati, Assam ');
+Query OK, 9 rows affected (0.02 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+
+
+CREATE TABLE Accounts(
+userName varchar(25) NOT NULL,
+password varchar(15) NOT NULL,
+a_id INTEGER,
+PRIMARY KEY (userName),
+FOREIGN KEY (a_id)
+REFERENCES Agent(a_id)
+);
+Query OK, 0 rows affected (0.07 sec)
+
+
+
+INSERT INTO Accounts(userName, password, a_id) VALUES
+('jonas_kahnwald', 'jonas123', 10101),
+('martha_nielson', 'martha123', 10102),
+('charlotte_doppler', 'charlotte123', 10103),
+('subba_sai_abhiram', 'abhiram12', 10104),
+('harsh_chenani', 'harsh123', 10105),
+('kurra_chandrashekar_', 'kurra123 ', 10106),
+('aman_kushwaha', 'aman123', 10107),
+('louis_hofmann', 'louis123', 10108),
+('nele_trebs', 'nele123', 10109);
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+desc Accounts;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| userName | varchar(25) | NO   | PRI | NULL    |       |
+| password | varchar(15) | NO   |     | NULL    |       |
+| a_id     | int         | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+CREATE TABLE Owner(
+o_id int NOT NULL,
+o_name varchar(30) NOT NULL,
+o_email varchar(50),
+o_add varchar(255),
+o_ph_no BIGINT,
+PRIMARY KEY (o_id)
+);
+Query OK, 0 rows affected (0.08 sec)
+
+desc Owner;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| o_id    | int          | NO   | PRI | NULL    |       |
+| o_name  | varchar(30)  | NO   |     | NULL    |       |
+| o_email | varchar(50)  | YES  |     | NULL    |       |
+| o_add   | varchar(255) | YES  |     | NULL    |       |
+| o_ph_no | bigint       | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+INSERT INTO Owner (o_id, o_name, o_email, o_add, o_ph_no) VALUES
+(20001, 'Rebeca Bruen', 'rebecabruen@gmail.com', '37, Arunodhaii Path, Bhaskar Nagar, Kumarpara, Guwahati, Assam', 9814754000),
+(20002, 'Albert Hettinger', 'alberthettinger@gmail.com', '43, Pubali Path, Palasbari , Guwahati, Assam', 9814756000),
+(20003, 'Neil Emmerich', 'neilemmerich@gmail.com', '85, Mathgharia, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814758000),
+(20004, 'Lisette Waelchi', 'lisettewaelchi@gmail.com', '13/9, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9814760000),
+(20005, 'Laurie Donnelly', 'lauriedonnelly@gmail.com', '12/6, Zoo Road Tiniali, Devi Ahilya path, Guwahati, Assam', 9814762000),
+(20006, 'Ericka Rosenbaum', 'erickarosenbaum@gmail.com', '69/6,  Anil Nagar, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814764000),
+(20007, 'Beau Bailey', 'beaubailey@gmail.com', '88/4, Bharalumukh, Chilarai Nagar, Guwahati, Assam', 9814766000),
+(20008, 'Rickey Donnelly', 'rickeydonnelly@gmail.com', '57, College Nagar, Chatribari, Guwahati, Assam', 9814768000),
+(20009, 'Blaise Mante', 'blaisemante@gmail.com', '104, Lachit Nagar, Fancy Bazar, Guwahati, Assam', 9814770000),
+(20010, 'May Hilll', 'mayhilll@gmail.com', '151, Arunodhaii Path, Bhaskar Nagar, Kumarpara, Guwahati, Assam', 9814772000),
+(20011, 'Einar Haley', 'einarhaley@gmail.com', '101, Mathgharia, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814694000),
+(20012, 'Tiana Jacobs', 'tianajacobs@gmail.com', '109, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9814696000),
+(20013, 'Jefferey Baumbach', 'jeffereybaumbach@gmail.com', '46, Zoo Road Tiniali, Devi Ahilya path, Guwahati, Assam', 9814698000),
+(20014, 'Lonny Halvorson', 'lonnyhalvorson@gmail.com', '169,  Anil Nagar, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814700000),
+(20015, 'Lambert Kuvalis', 'lambertkuvalis@gmail.com', '70/11, Bharalumukh, Chilarai Nagar, Guwahati, Assam', 9814702000),
+(20016, 'Eli Dibbert', 'elidibbert@gmail.com', '47, College Nagar, Chatribari, Guwahati, Assam', 9814704000),
+(20017, 'Bethany Cruickshank', 'bethanycruickshank@gmail.com', '143, Lachit Nagar, Fancy Bazar, Guwahati, Assam', 9814706000),
+(20018, 'Elwyn Watsica', 'elwynwatsica@gmail.com', '87, Arunodhaii Path, Bhaskar Nagar, Kumarpara, Guwahati, Assam', 9814708000),
+(20019, 'Makenzie Kunze', 'makenziekunze@gmail.com', '34, Pubali Path, Palasbari , Guwahati, Assam', 9814710000),
+(20020, 'Arvilla Thompson', 'arvillathompson@gmail.com', '17, Mathgharia, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814712000),
+(20021, 'Alanna Rosenbaum', 'alannarosenbaum@gmail.com', '101, Gopal Nagar, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814794000),
+(20022, 'Beryl Steuber', 'berylsteuber@gmail.com', '109, KRB Road, Ganesh Nagar, Bamunimaidan, Guwahati', 9814796000),
+(20023, 'Johnpaul Nienow', 'johnpaulnienow@gmail.com', '46, Piyoli Phukan Nagar, Devi Ahilya path, Guwahati, Assam', 9814798000),
+(20024, 'Virginie Wilderman', 'virginiewilderman@gmail.com', '169,  Ramchai Hills, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814800000),
+(20025, 'Johathan Lubowitz', 'johathanlubowitz@gmail.com', '70/11, Chanmari, Chilarai Nagar, Guwahati, Assam', 9814802000),
+(20026, 'Evelyn Thiel', 'evelynthiel@gmail.com', '47, College Nagar, Silpukhuri, Guwahati, Assam', 9814804000),
+(20027, 'Merle Jacobi', 'merlejacobi@gmail.com', '143, Lachit Nagar, Sarania Hills, Guwahati, Assam', 9814806000),
+(20028, 'Wilber Monahan', 'wilbermonahan@gmail.com', '87, Arunodhaii Path, Bhirubari, Kumarpara, Guwahati, Assam', 9814808000),
+(20029, 'Ashton Thiel', 'ashtonthiel@gmail.com', '34, Pubali Path, Pub Jyoti Nagar , Guwahati, Assam', 9814810000),
+(20030, 'Rose Kuvalis', 'rosekuvalis@gmail.com', '17, Gopal Nagar, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814812000),
+(20031, 'Isabell Dibbert', 'isabelldibbert@gmail.com', '13, Lachit Nagar, Fancy Bazar, Guwahati, Assam', 9814734000),
+(20032, 'Adela Yost', 'adelayost@gmail.com', '17, Arunodhaii Path, Bhaskar Nagar, Kumarpara, Guwahati, Assam', 9814736000),
+(20033, 'Lorenza Bernier', 'lorenzabernier@gmail.com', '406 Pubali Path, Palasbari , Guwahati, Assam', 9814738000),
+(20034, 'Ashley Klocko', 'ashleyklocko@gmail.com', '80, Mathgharia, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814740000),
+(20035, 'Berta Leuschke', 'bertaleuschke@gmail.com', '19, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9814742000),
+(20036, 'Jeffrey Stiedemann', 'jeffreystiedemann@gmail.com', '746, Zoo Road Tiniali, Devi Ahilya path, Guwahati, Assam', 9814744000),
+(20037, 'Shaun Rath', 'shaunrath@gmail.com', '69,  Anil Nagar, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814746000),
+(20038, 'Howell Grimes', 'howellgrimes@gmail.com', '7/11, Bharalumukh, Chilarai Nagar, Guwahati, Assam', 9814748000),
+(20039, 'Adolfo Wyman', 'adolfowyman@gmail.com', '401, College Nagar, Chatribari, Guwahati, Assam', 9814750000),
+(20040, 'Elenor Halvorson', 'elenorhalvorson@gmail.com', '41, Lachit Nagar, Fancy Bazar, Guwahati, Assam', 9814752000),
+(20041, 'Buddy Conroy', 'buddyconroy@gmail.com', '13, Lachit Nagar, Sarania Hills, Guwahati, Assam', 9814834000),
+(20042, 'Michael Ruecker', 'michaelruecker@gmail.com', '17, Arunodhaii Path, Bhirubari, Kumarpara, Guwahati, Assam', 9814836000),
+(20043, 'Jakayla Keeling', 'jakaylakeeling@gmail.com', '406 Pubali Path, Pub Jyoti Nagar , Guwahati, Assam', 9814838000),
+(20044, 'Samantha Schoen', 'samanthaschoen@gmail.com', '80, Gopal Nagar, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814840000),
+(20045, 'Liza Keebler', 'lizakeebler@gmail.com', '19, KRB Road, Ganesh Nagar, Bamunimaidan, Guwahati', 9814842000),
+(20046, 'Forrest Larkin', 'forrestlarkin@gmail.com', '746, Piyoli Phukan Nagar, Devi Ahilya path, Guwahati, Assam', 9814844000),
+(20047, 'Ned McDermott', 'nedmcdermott@gmail.com', '40/6, Zoo Road Tiniali, Devi Ahilya path, Guwahati, Assam', 9814726000),
+(20048, 'Fleta Orn', 'fletaorn@gmail.com', '3/69,  Anil Nagar, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814728000),
+(20049, 'Mariane Langworth', 'marianelangworth@gmail.com', '11/4, Bharalumukh, Chilarai Nagar, Guwahati, Assam', 9814730000),
+(20050, 'Lane Corwin', 'lanecorwin@gmail.com', '54, College Nagar, Chatribari, Guwahati, Assam', 9814732000),
+(20051, 'June Keeling', 'junekeeling@gmail.com', '109, Pubali Path, Pub Jyoti Nagar , Guwahati, Assam', 9814774000),
+(20052, 'Patsy Boyle', 'patsyboyle@gmail.com', '51, Gopal Nagar, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam ', 9814776000),
+(20053, 'Susan Yost', 'susanyost@gmail.com', '139, KRB Road, Ganesh Nagar, Bamunimaidan, Guwahati', 9814778000),
+(20054, 'Melany Rutherford', 'melanyrutherford@gmail.com', '102/6, Piyoli Phukan Nagar, Devi Ahilya path, Guwahati, Assam', 9814780000),
+(20055, 'Dayana VonRueden', 'dayanavonrueden@gmail.com', '61/2,  Ramchai Hills, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814782000),
+(20056, 'Vergie Stracke', 'vergiestracke@gmail.com', '22/3, Chanmari, Chilarai Nagar, Guwahati, Assam', 9814784000),
+(20057, 'Kiarra Senger', 'kiarrasenger@gmail.com', '13/3, College Nagar, Silpukhuri, Guwahati, Assam', 9814786000),
+(20058, 'Clare Tillman', 'claretillman@gmail.com', '17/2, Lachit Nagar, Sarania Hills, Guwahati, Assam', 9814788000),
+(20059, 'Darron Gulgowski', 'darrongulgowski@gmail.com', '19, Arunodhaii Path, Bhirubari, Kumarpara, Guwahati, Assam ', 9814790000),
+(20060, 'Leila Barton', 'leilabarton@gmail.com', '46 Pubali Path, Pub Jyoti Nagar , Guwahati, Assam', 9814792000),
+(20061, 'Winifred Hoppe', 'winifredhoppe@gmail.com', '109, Pubali Path, Palasbari , Guwahati, Assam', 9814674000),
+(20062, 'Mariam Rempel', 'mariamrempel@gmail.com', '51, Mathgharia, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814676000),
+(20063, 'Ervin Wolff', 'ervinwolff@gmail.com', '139, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9814678000),
+(20064, 'Isabelle Shields', 'isabelleshields@gmail.com', '102/6, Zoo Road Tiniali, Devi Ahilya path, Guwahati, Assam', 9814680000),
+(20065, 'Harrison Hayes', 'harrisonhayes@gmail.com', '61/2,  Anil Nagar, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814682000),
+(20066, 'Ellsworth Dickens', 'ellsworthdickens@gmail.com', '22/3, Bharalumukh, Chilarai Nagar, Guwahati, Assam', 9814684000),
+(20067, 'Edmund Feil', 'edmundfeil@gmail.com', '13/3, College Nagar, Chatribari, Guwahati, Assam', 9814686000),
+(20068, 'Casey Cronin', 'caseycronin@gmail.com', '17/2, Lachit Nagar, Fancy Bazar, Guwahati, Assam', 9814688000),
+(20069, 'Rod Abshire', 'rodabshire@gmail.com', '19, Arunodhaii Path, Bhaskar Nagar, Kumarpara, Guwahati, Assam', 9814690000),
+(20070, 'Tobin Eichmann', 'tobineichmann@gmail.com', '46 Pubali Path, Palasbari , Guwahati, Assam', 9814692000),
+(20071, 'Burdette Schimmel', 'burdetteschimmel@gmail.com', '190, KRB Road, Ganesh Nagar, Bamunimaidan, Guwahati', 9814814000),
+(20072, 'Jamir Orn', 'jamirorn@gmail.com', '15/6, Piyoli Phukan Nagar, Devi Ahilya path, Guwahati, Assam', 9814816000),
+(20073, 'Jada Grady', 'jadagrady@gmail.com', '67/2,  Ramchai Hills, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814818000),
+(20074, 'Rocio Lindgren', 'rociolindgren@gmail.com', '64, Pubali Path, Pub Jyoti Nagar , Guwahati, Assam', 9814820000),
+(20075, 'Orland Crona', 'orlandcrona@gmail.com', '11, Gopal Nagar, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814822000),
+(20076, 'Coralie Lehner', 'coralielehner@gmail.com', '11/9, KRB Road, Ganesh Nagar, Bamunimaidan, Guwahati', 9814824000),
+(20077, 'Sadie Jaskolski', 'sadiejaskolski@gmail.com', '40/6, Piyoli Phukan Nagar, Devi Ahilya path, Guwahati, Assam', 9814826000),
+(20078, 'Reba Robel', 'rebarobel@gmail.com', '3/69,  Ramchai Hills, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814828000),
+(20079, 'Hassie Leffler', 'hassieleffler@gmail.com', '11/4, Chanmari, Chilarai Nagar, Guwahati, Assam', 9814830000),
+(20080, 'Ryder Becker', 'ryderbecker@gmail.com', '54, College Nagar, Silpukhuri, Guwahati, Assam', 9814832000),
+(20081, 'Aniyah Brekke', 'aniyahbrekke@gmail.com', '190, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9814714000),
+(20082, 'Geovanny Tromp', 'geovannytromp@gmail.com', '15/6, Zoo Road Tiniali, Devi Ahilya path, Guwahati, Assam', 9814716000),
+(20083, 'Jerel OKeefe', 'jerelokeefe@gmail.com', '67/2,  Anil Nagar, Rajgarh link Road,  Pan Bazar, Guwahati , Assam', 9814718000),
+(20084, 'Jordane Bode', 'jordanebode@gmail.com', '64, Pubali Path, Palasbari , Guwahati, Assam', 9814720000),
+(20085, 'Braeden Boyle', 'braedenboyle@gmail.com', '11, Mathgharia, Shankaracharya Path, Mother Teresa Road, Guwahati, Assam', 9814722000);
+Query OK, 85 rows affected (0.02 sec)
+Records: 85  Duplicates: 0  Warnings: 0
+
+
+
+CREATE TABLE Buyer(
+b_id int NOT NULL,
+b_name varchar(30) NOT NULL,
+b_email varchar(50),
+b_add varchar(255),
+b_ph_no BIGINT,
+PRIMARY KEY (b_id)
+);
+Query OK, 0 rows affected (0.10 sec)
+
+desc Buyer;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| b_id    | int          | NO   | PRI | NULL    |       |
+| b_name  | varchar(30)  | NO   |     | NULL    |       |
+| b_email | varchar(50)  | YES  |     | NULL    |       |
+| b_add   | varchar(255) | YES  |     | NULL    |       |
+| b_ph_no | bigint       | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+INSERT INTO Buyer (b_id, b_name, b_email, b_add, b_ph_no) VALUES
+(30001, 'Prince Farrell', 'princefarrell@gmail.com', '190, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9660720000),
+(30002, 'Dahlia Deckow', 'dahliadeckow@gmail.com', '15/6, Zoo Road Tiniali, sugam path, Guwahati, Assam', 9660722000),
+(30003, 'Leopold Romaguera', 'leopoldromaguera@gmail.com', '67/2,  Anil Nagar, Rajgarh link Road,  Nabin Nagar, Guwahati , Assam', 9660724000),
+(30004, 'Sophie Parisian', 'sophieparisian@gmail.com', '64, Pubali Path, santipur , Guwahati, Assam', 9660726000),
+(30005, 'Ned Morar', 'nedmorar@gmail.com', '11, Mathgharia, Janata Path, Mother Teresa Road, Guwahati, Assam', 9660728000),
+(30006, 'Rollin Witting', 'rollinwitting@gmail.com', '11/9, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9660730000),
+(30007, 'Jay Reichel', 'jayreichel@gmail.com', '40/6, Zoo Road Tiniali, sugam path, Guwahati, Assam', 9660732000),
+(30008, 'Troy Funk', 'troyfunk@gmail.com', '3/69,  Anil Nagar, Rajgarh link Road,  Nabin Nagar, Guwahati , Assam', 9660734000),
+(30009, 'Helga Gusikowski', 'helgagusikowski@gmail.com', '11/4, Srimantapur, Chilarai Nagar, Guwahati, Assam', 9660736000),
+(30010, 'Murray Kuhn', 'murraykuhn@gmail.com', '54, Chatribari Road, Chatribari, Guwahati, Assam', 9660738000),
+(30011, 'Coralie Runolfsson', 'coralierunolfsson@gmail.com', '101, Mathgharia, Janata Path, Mother Teresa Road, Guwahati, Assam', 9660700000),
+(30012, 'Augustine Bailey', 'augustinebailey@gmail.com', '109, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9660702000),
+(30013, 'Ezequiel Johnson', 'ezequieljohnson@gmail.com', '46, Zoo Road Tiniali, sugam path, Guwahati, Assam', 9660704000),
+(30014, 'Jan Bartoletti', 'janbartoletti@gmail.com', '169,  Anil Nagar, Rajgarh link Road,  Nabin Nagar, Guwahati , Assam', 9660706000),
+(30015, 'Johathan Hermann', 'johathanhermann@gmail.com', '70/11, Srimantapur, Chilarai Nagar, Guwahati, Assam', 9660708000),
+(30016, 'Hans Fadel', 'hansfadel@gmail.com', '47, Chatribari Road, Chatribari, Guwahati, Assam', 9660710000),
+(30017, 'Velda Greenfelder', 'veldagreenfelder@gmail.com', '143, Lakhtokia, Fancy Bazar, Guwahati, Assam', 9660712000),
+(30018, 'Nannie Quitzon', 'nanniequitzon@gmail.com', '87, Arunodhaii Path, Narayan Nagar, Kumarpara, Guwahati, Assam', 9660714000),
+(30019, 'Diego Will', 'diegowill@gmail.com', '34, Pubali Path, santipur , Guwahati, Assam', 9660716000),
+(30020, 'Alanna Heidenreich', 'alannaheidenreich@gmail.com', '17, Mathgharia, Janata Path, Mother Teresa Road, Guwahati, Assam', 9660718000),
+(30021, 'Jaquelin Feeney', 'jaquelinfeeney@gmail.com', '37, Arunodhaii Path, Narayan Nagar, Kumarpara, Guwahati, Assam', 9660760000),
+(30022, 'Concepcion Cole', 'concepcioncole@gmail.com', '43, Pubali Path, santipur , Guwahati, Assam', 9660762000),
+(30023, 'Keven Kiehn', 'kevenkiehn@gmail.com', '85, Mathgharia, Janata Path, Mother Teresa Road, Guwahati, Assam', 9660764000),
+(30024, 'Chaya Aufderhar', 'chayaaufderhar@gmail.com', '13/9, KRB Road, Railway colony, Bamunimaidan, Guwahati', 9660766000),
+(30025, 'Theresia Wintheiser', 'theresiawintheiser@gmail.com', '12/6, Zoo Road Tiniali, sugam path, Guwahati, Assam', 9660768000),
+(30026, 'Lewis Welch', 'lewiswelch@gmail.com', '69/6,  Anil Nagar, Rajgarh link Road,  Nabin Nagar, Guwahati , Assam', 9660770000),
+(30027, 'Araceli Fadel', 'aracelifadel@gmail.com', '88/4, Srimantapur, Chilarai Nagar, Guwahati, Assam', 9660772000),
+(30028, 'Leila Towne', 'leilatowne@gmail.com', '57, Chatribari Road, Chatribari, Guwahati, Assam', 9660774000),
+(30029, 'Kara Paucek', 'karapaucek@gmail.com', '104, Lakhtokia, Fancy Bazar, Guwahati, Assam', 9660776000),
+(30030, 'Bailee Lueilwitz', 'baileelueilwitz@gmail.com', '151, Arunodhaii Path, Narayan Nagar, Kumarpara, Guwahati, Assam', 9660778000);
+Query OK, 30 rows affected (0.02 sec)
+Records: 30  Duplicates: 0  Warnings: 0
+
+
+CREATE TABLE Property(
+p_id int NOT NULL,
+address varchar(255),
+status varchar(15),
+s_date varchar(10),
+a_id int,
+b_id int,
+o_id int,
+PRIMARY KEY (p_id),
+FOREIGN KEY (a_id)
+REFERENCES Agent(a_id),
+FOREIGN KEY (b_id)
+REFERENCES Buyer(b_id),
+FOREIGN KEY (o_id)
+REFERENCES Owner(o_id)
+);
+Query OK, 0 rows affected (0.08 sec)
+
+desc Property;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| p_id    | int          | NO   | PRI | NULL    |       |
+| address | varchar(255) | YES  |     | NULL    |       |
+| status  | varchar(15)  | YES  |     | NULL    |       |
+| s_date  | varchar(10)  | YES  |     | NULL    |       |
+| a_id    | int          | YES  | MUL | NULL    |       |
+| b_id    | int          | YES  | MUL | NULL    |       |
+| o_id    | int          | YES  | MUL | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+INSERT INTO Property (p_id, address, status, a_id, o_id) VALUES
+(19001, '832, Guwahati University H O , Guwahati, Assam', 'For Rent', 10101, 20001 ),
+(19002, '992, Bamunimaidan , Guwahati, Assam', 'For Rent', 10102, 20002 ),
+(19003, '733, Rehabari (Gh) , Guwahati, Assam', 'For Rent', 10103, 20003 ),
+(19004, '758, Russett House, Guwahati Airport , Guwahati, Assam', 'For Rent', 10104, 20004 ),
+(19005, '782, Gokuldham Society, Ulubari , Guwahati, Assam', 'For Rent', 10105, 20005 ),
+(19006, '571, Kamakhya , Guwahati, Assam', 'For Rent', 10106, 20006 ),
+(19007, '499, Gokuldham Society, Bamunimaidan , Guwahati, Assam', 'For Rent', 10107, 20007 ),
+(19008, '157, Ghatkoper Colony, Bamunimaidan , Guwahati, Assam', 'For Rent', 10108, 20008 ),
+(19009, '721, Paltanbazar , Guwahati, Assam', 'For Rent', 10109, 20009 ),
+(19010, '777, Variety bazaar, Zoo Road , Guwahati, Assam', 'For Rent', 10101, 20010 ),
+(19011, '975, Mile stone, Amingaon , Guwahati, Assam', 'For Rent', 10102, 20011 ),
+(19012, '850, Kharguli , Guwahati, Assam', 'For Rent', 10103, 20012 ),
+(19013, '916, Chenikuthi , Guwahati, Assam', 'For Rent', 10104, 20013 ),
+(19014, '262, Fancy Bazar , Guwahati, Assam', 'For Rent', 10105, 20014 ),
+(19015, '453, Elite, Guwahati Airport , Guwahati, Assam', 'For Rent', 10106, 20015 ),
+(19016, '762, Bamunimaidan , Guwahati, Assam', 'For Rent', 10107, 20016 ),
+(19017, '551, Gokuldham Society, Beltala , Guwahati, Assam', 'For Rent', 10108, 20017 ),
+(19018, '311, Fancy Bazar , Guwahati, Assam', 'For Rent', 10109, 20018 ),
+(19019, '922, Narangi , Guwahati, Assam', 'For Rent', 10101, 20019 ),
+(19020, '810, Cheer up, Paltanbazar , Guwahati, Assam', 'For Rent', 10102, 20020 ),
+(19021, '308, Khanapara , Guwahati, Assam', 'For Rent', 10103, 20021 ),
+(19022, '319, Paltanbazar , Guwahati, Assam', 'For Rent', 10104, 20022 ),
+(19023, '271, Fun n food, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Rent', 10105, 20023 ),
+(19024, '436, Crazzy, Chenikuthi , Guwahati, Assam', 'For Rent', 10106, 20024 ),
+(19025, '372, Athgaon , Guwahati, Assam', 'For Rent', 10107, 20025 ),
+(19026, '560, Jewel of Chembur, Beltala , Guwahati, Assam', 'For Rent', 10108, 20026 ),
+(19027, '365, Elanza, Pandu Rly Colony , Guwahati, Assam', 'For Rent', 10109, 20027 ),
+(19028, '818, Blue Diamond, Athgaon , Guwahati, Assam', 'For Rent', 10101, 20028 ),
+(19029, '246, Amingaon , Guwahati, Assam', 'For Rent', 10102, 20029 ),
+(19030, '135, Cheer up, Ambasi Fatesil , Guwahati, Assam', 'For Rent', 10103, 20030 ),
+(19031, '599, Ulubari , Guwahati, Assam', 'For Rent', 10104, 20031 ),
+(19032, '979, Jewel of Chembur, Beltala , Guwahati, Assam', 'For Rent', 10105, 20032 ),
+(19033, '769, Elite, Kahilipara , Guwahati, Assam', 'For Rent', 10106, 20033 ),
+(19034, '606, Binova Nagar , Guwahati, Assam', 'For Rent', 10107, 20034 ),
+(19035, '145, Crazzy, Satgaon , Guwahati, Assam', 'For Rent', 10108, 20035 ),
+(19036, '630, The Acorns, Paltanbazar , Guwahati, Assam', 'For Rent', 10109, 20036 ),
+(19037, '168, Assam Sachivalaya , Guwahati, Assam', 'For Rent', 10101, 20037 ),
+(19038, '583, Mile stone, Fancy Bazar , Guwahati, Assam', 'For Rent', 10102, 20038 ),
+(19039, '372, Amerigog , Guwahati, Assam', 'For Rent', 10103, 20039 ),
+(19040, '924, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Rent', 10104, 20040 ),
+(19041, '824, Crazzy, Silpukhuri , Guwahati, Assam', 'For Rent', 10105, 20041 ),
+(19042, '387, Elite, Silpukhuri , Guwahati, Assam', 'For Rent', 10106, 20042 ),
+(19043, '887, Russett House, Paltanbazar , Guwahati, Assam', 'For Rent', 10107, 20043 ),
+(19044, '289, Satgaon , Guwahati, Assam', 'For Rent', 10108, 20044 ),
+(19045, '922, Gokuldham Society, Kahilipara , Guwahati, Assam', 'For Rent', 10109, 20045 ),
+(19046, '112, Paltanbazar , Guwahati, Assam', 'For Rent', 10101, 20046 ),
+(19047, '110, Kharguli , Guwahati, Assam', 'For Rent', 10102, 20047 ),
+(19048, '235, Fancy Bazar , Guwahati, Assam', 'For Rent', 10103, 20048 ),
+(19049, '840, Jewel of Chembur, Noonmati , Guwahati, Assam', 'For Rent', 10104, 20049 ),
+(19050, '899, Azara , Guwahati, Assam', 'For Rent', 10105, 20050 ),
+(19051, '857, Khanapara , Guwahati, Assam', 'For Rent', 10106, 20051 ),
+(19052, '483, Blue Diamond, Panjabari , Guwahati, Assam', 'For Rent', 10107, 20052 ),
+(19053, '840, Rowan Cottage, Silpukhuri , Guwahati, Assam', 'For Rent', 10108, 20053 ),
+(19054, '698, Crimson Bay, Fancy Bazar , Guwahati, Assam', 'For Rent', 10109, 20054 ),
+(19055, '501, Khanapara , Guwahati, Assam', 'For Rent', 10101, 20055 ),
+(19056, '867, Zoo Road , Guwahati, Assam', 'For Rent', 10102, 20056 ),
+(19057, '254, Crimson Bay, Kahilipara , Guwahati, Assam', 'For Rent', 10103, 20057 ),
+(19058, '221, Byways, Pandu Rly Colony , Guwahati, Assam', 'For Rent', 10104, 20058 ),
+(19059, '516, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Rent', 10105, 20059 ),
+(19060, '196, Dispur , Guwahati, Assam', 'For Rent', 10106, 20060 ),
+(19061, '398, Acropolis, Athgaon , Guwahati, Assam', 'For Rent', 10107, 20061 ),
+(19062, '605, Lake Homes, Fancy Bazar , Guwahati, Assam', 'For Rent', 10108, 20062 ),
+(19063, '395, Khanapara , Guwahati, Assam', 'For Rent', 10109, 20063 ),
+(19064, '642, Blue Heights, Kharguli , Guwahati, Assam', 'For Rent', 10101, 20064 ),
+(19065, '738, Mile stone, Narangi , Guwahati, Assam', 'For Rent', 10102, 20065 ),
+(19066, '621, Blue Diamond, Kharguli , Guwahati, Assam', 'For Rent', 10103, 20066 ),
+(19067, '919, Kharguli , Guwahati, Assam', 'For Rent', 10104, 20067 ),
+(19068, '529, Binova Nagar , Guwahati, Assam', 'For Rent', 10105, 20068 ),
+(19069, '268, Russett House, Guwahati H O , Guwahati, Assam', 'For Rent', 10106, 20069 ),
+(19070, '475, Adobe, Ambasi Fatesil , Guwahati, Assam', 'For Rent', 10107, 20070 ),
+(19071, '480, Lake Homes, Ambasi Fatesil , Guwahati, Assam', 'For Rent', 10108, 20071 ),
+(19072, '119, Chenikuthi , Guwahati, Assam', 'For Rent', 10109, 20072 ),
+(19073, '221, Binova Nagar , Guwahati, Assam', 'For Rent', 10101, 20073 ),
+(19074, '987, Amingaon , Guwahati, Assam', 'For Rent', 10102, 20074 ),
+(19075, '337, Pandu Rly Colony , Guwahati, Assam', 'For Rent', 10103, 20075 ),
+(19076, '843, Gokuldham Society, Guwahati H O , Guwahati, Assam', 'For Rent', 10104, 20076 ),
+(19077, '205, Ambasi Fatesil , Guwahati, Assam', 'For Rent', 10105, 20077 ),
+(19078, '679, Noonmati , Guwahati, Assam', 'For Rent', 10106, 20078 ),
+(19079, '793, Pandu Rly Colony , Guwahati, Assam', 'For Rent', 10107, 20079 ),
+(19080, '283, Kharguli , Guwahati, Assam', 'For Rent', 10108, 20080 ),
+(19081, '409, Kid zone, Khanapara , Guwahati, Assam', 'For Rent', 10109, 20081 ),
+(19082, '681, Mile stone, Noonmati , Guwahati, Assam', 'For Rent', 10101, 20082 ),
+(19083, '245, Noonmati , Guwahati, Assam', 'For Rent', 10102, 20083 ),
+(19084, '790, Variety bazaar, Zoo Road , Guwahati, Assam', 'For Rent', 10103, 20084 ),
+(19085, '623, Narangi , Guwahati, Assam', 'For Rent', 10104, 20085 ),
+(19086, '516, Panjabari , Guwahati, Assam', 'For Rent', 10105, 20001 ),
+(19087, '833, Athgaon , Guwahati, Assam', 'For Rent', 10106, 20002 ),
+(19088, '200, Assam Engg Institute , Guwahati, Assam', 'For Rent', 10107, 20003 ),
+(19089, '812, Assam Sachivalaya , Guwahati, Assam', 'For Rent', 10108, 20004 ),
+(19090, '846, Elanza, Noonmati , Guwahati, Assam', 'For Rent', 10109, 20005 ),
+(19091, '344, Ghatkoper Colony, Assam Tribune , Guwahati, Assam', 'For Sell', 10101, 20006 ),
+(19092, '994, North Guwahati , Guwahati, Assam', 'For Sell', 10102, 20007 ),
+(19093, '384, Rehabari (Gh) , Guwahati, Assam', 'For Sell', 10103, 20008 ),
+(19094, '380, The Acorns, Guwahati University H O , Guwahati, Assam', 'For Sell', 10104, 20009 ),
+(19095, '148, Blue Heights, Narangi , Guwahati, Assam', 'For Sell', 10105, 20010 ),
+(19096, '466, Azara , Guwahati, Assam', 'For Sell', 10106, 20011 ),
+(19097, '802, Crazzy, Ambasi Fatesil , Guwahati, Assam', 'For Sell', 10107, 20012 ),
+(19098, '185, Mile stone, Noonmati , Guwahati, Assam', 'For Sell', 10108, 20013 ),
+(19099, '741, Star world, Panjabari , Guwahati, Assam', 'For Sell', 10109, 20014 ),
+(19100, '269, Kid zone, Assam Tribune , Guwahati, Assam', 'For Sell', 10101, 20015 ),
+(19101, '731, Cheer up, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Sell', 10102, 20016 ),
+(19102, '681, Sunnyhill, Assam Sachivalaya , Guwahati, Assam', 'For Sell', 10103, 20017 ),
+(19103, '203, Bharalumukh , Guwahati, Assam', 'For Sell', 10104, 20018 ),
+(19104, '865, The Acorns, Silpukhuri , Guwahati, Assam', 'For Sell', 10105, 20019 ),
+(19105, '607, Variety bazaar, Jhalukbari , Guwahati, Assam', 'For Sell', 10106, 20020 ),
+(19106, '953, Satgaon , Guwahati, Assam', 'For Sell', 10107, 20021 ),
+(19107, '519, Panjabari , Guwahati, Assam', 'For Sell', 10108, 20022 ),
+(19108, '694, North Guwahati , Guwahati, Assam', 'For Sell', 10109, 20023 ),
+(19109, '751, Byways, Guwahati H O , Guwahati, Assam', 'For Sell', 10101, 20024 ),
+(19110, '678, Star world, Guwahati Airport , Guwahati, Assam', 'For Sell', 10102, 20025 ),
+(19111, '680, Beltala , Guwahati, Assam', 'For Sell', 10103, 20026 ),
+(19112, '622, Kahilipara , Guwahati, Assam', 'For Sell', 10104, 20027 ),
+(19113, '159, Star world, North Guwahati , Guwahati, Assam', 'For Sell', 10105, 20028 ),
+(19114, '856, Variety bazaar, Pandu , Guwahati, Assam', 'For Sell', 10106, 20029 ),
+(19115, '826, Guwahati Airport , Guwahati, Assam', 'For Sell', 10107, 20030 ),
+(19116, '846, Altura, Kharguli , Guwahati, Assam', 'For Sell', 10108, 20031 ),
+(19117, '509, Athgaon , Guwahati, Assam', 'For Sell', 10109, 20032 ),
+(19118, '666, Amerigog , Guwahati, Assam', 'For Sell', 10101, 20033 ),
+(19119, '884, Gean Rise, Bharalumukh , Guwahati, Assam', 'For Sell', 10102, 20034 ),
+(19120, '289, Ulubari , Guwahati, Assam', 'For Sell', 10103, 20035 ),
+(19121, '466, Assam Engg Institute , Guwahati, Assam', 'For Sell', 10104, 20036 ),
+(19122, '333, Amingaon , Guwahati, Assam', 'For Sell', 10105, 20037 ),
+(19123, '363, Elanza, Amerigog , Guwahati, Assam', 'For Sell', 10106, 20038 ),
+(19124, '559, Khanapara , Guwahati, Assam', 'For Sell', 10107, 20039 ),
+(19125, '103, Acropolis, Paltanbazar , Guwahati, Assam', 'For Sell', 10108, 20040 ),
+(19126, '919, Paltanbazar , Guwahati, Assam', 'For Sell', 10109, 20041 ),
+(19127, '320, Athgaon , Guwahati, Assam', 'For Sell', 10101, 20042 ),
+(19128, '623, Azara , Guwahati, Assam', 'For Sell', 10102, 20043 ),
+(19129, '808, Binova Nagar , Guwahati, Assam', 'For Sell', 10103, 20044 ),
+(19130, '110, Gean Rise, Athgaon , Guwahati, Assam', 'For Sell', 10104, 20045 ),
+(19131, '833, Paltanbazar , Guwahati, Assam', 'For Sell', 10105, 20046 ),
+(19132, '210, Gean Rise, Amingaon , Guwahati, Assam', 'For Sell', 10106, 20047 ),
+(19133, '272, Guwahati H O , Guwahati, Assam', 'For Sell', 10107, 20048 ),
+(19134, '663, Assam Sachivalaya , Guwahati, Assam', 'For Sell', 10108, 20049 ),
+(19135, '733, Blue Heights, Assam Tribune , Guwahati, Assam', 'For Sell', 10109, 20050 ),
+(19136, '436, Crimson Bay, Ulubari , Guwahati, Assam', 'For Sell', 10101, 20051 ),
+(19137, '325, Lake Homes, Assam Engg Institute , Guwahati, Assam', 'For Sell', 10102, 20052 ),
+(19138, '900, Fancy Bazar , Guwahati, Assam', 'For Sell', 10103, 20053 ),
+(19139, '821, Fancy Bazar , Guwahati, Assam', 'For Sell', 10104, 20054 ),
+(19140, '284, Acropolis, Assam Tribune , Guwahati, Assam', 'For Sell', 10105, 20055 ),
+(19141, '952, Star world, Dispur , Guwahati, Assam', 'For Sell', 10106, 20056 ),
+(19142, '739, Panjabari , Guwahati, Assam', 'For Sell', 10107, 20057 ),
+(19143, '836, Gopinath Nagar , Guwahati, Assam', 'For Sell', 10108, 20058 ),
+(19144, '915, Assam Tribune , Guwahati, Assam', 'For Sell', 10109, 20059 ),
+(19145, '901, Jhalukbari , Guwahati, Assam', 'For Sell', 10101, 20060 ),
+(19146, '823, Jewel of Chembur, Kahilipara , Guwahati, Assam', 'For Sell', 10102, 20061 ),
+(19147, '970, Guwahati University H O , Guwahati, Assam', 'For Sell', 10103, 20062 ),
+(19148, '837, Kharguli , Guwahati, Assam', 'For Sell', 10104, 20063 ),
+(19149, '872, Amingaon , Guwahati, Assam', 'For Sell', 10105, 20064 ),
+(19150, '311, The Acorns, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Sell', 10106, 20065 ),
+(19151, '540, Cheer up, Bamunimaidan , Guwahati, Assam', 'For Sell', 10107, 20066 ),
+(19152, '479, Noonmati , Guwahati, Assam', 'For Sell', 10108, 20067 ),
+(19153, '727, Variety bazaar, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Sell', 10109, 20068 ),
+(19154, '567, Star world, Binova Nagar , Guwahati, Assam', 'For Sell', 10101, 20069 ),
+(19155, '117, Variety bazaar, Amerigog , Guwahati, Assam', 'For Sell', 10102, 20070 ),
+(19156, '248, Jhalukbari , Guwahati, Assam', 'For Sell', 10103, 20071 ),
+(19157, '730, Variety bazaar, Assam Tribune , Guwahati, Assam', 'For Sell', 10104, 20072 ),
+(19158, '105, Star world, Khanapara , Guwahati, Assam', 'For Sell', 10105, 20073 ),
+(19159, '640, Kharguli , Guwahati, Assam', 'For Sell', 10106, 20074 ),
+(19160, '687, Sunnyhill, Dispur , Guwahati, Assam', 'For Sell', 10107, 20075 ),
+(19161, '477, Amingaon , Guwahati, Assam', 'For Sell', 10108, 20076 ),
+(19162, '478, Blue Heights, Ulubari , Guwahati, Assam', 'For Sell', 10109, 20077 ),
+(19163, '740, Galaxy, Dispur , Guwahati, Assam', 'For Sell', 10101, 20078 ),
+(19164, '447, Elanza, Pandu , Guwahati, Assam', 'For Sell', 10102, 20079 ),
+(19165, '561, Mile stone, Amingaon , Guwahati, Assam', 'For Sell', 10103, 20080 ),
+(19166, '851, Gokuldham Society, Maligaon Rly Hd Qrs , Guwahati, Assam', 'For Sell', 10104, 20081 ),
+(19167, '794, Adobe, Assam Tribune , Guwahati, Assam', 'For Sell', 10105, 20082 ),
+(19168, '293, Gokuldham Society, Dispur , Guwahati, Assam', 'For Sell', 10106, 20083 ),
+(19169, '221, Mile stone, Chenikuthi , Guwahati, Assam', 'For Sell', 10107, 20084 ),
+(19170, '648, The Acorns, Narangi , Guwahati, Assam', 'For Sell', 10108, 20085 ),
+(19171, '337, Russett House, Ambasi Fatesil , Guwahati, Assam', 'For Sell', 10109, 20001 ),
+(19172, '104, Kid zone, Gopinath Nagar , Guwahati, Assam', 'For Sell', 10101, 20002 ),
+(19173, '636, Beltala , Guwahati, Assam', 'For Sell', 10102, 20003 ),
+(19174, '416, Assam Engg Institute , Guwahati, Assam', 'For Sell', 10103, 20004 ),
+(19175, '485, Gean Rise, Bharalumukh , Guwahati, Assam', 'For Sell', 10104, 20005 ),
+(19176, '806, Bamunimaidan , Guwahati, Assam', 'For Sell', 10105, 20006 ),
+(19177, '605, Russett House, Assam Engg Institute , Guwahati, Assam', 'For Sell', 10106, 20007 ),
+(19178, '684, Crazzy, Kahilipara , Guwahati, Assam', 'For Sell', 10107, 20008 ),
+(19179, '182, Galaxy, Pandu , Guwahati, Assam', 'For Sell', 10108, 20009 ),
+(19180, '997, Chenikuthi , Guwahati, Assam', 'For Sell', 10109, 20010 );
+Query OK, 180 rows affected (0.03 sec)
+Records: 180  Duplicates: 0  Warnings: 0
+
+
+INSERT INTO Property (p_id, address, status, s_date, a_id, o_id, b_id) VALUES
+(19181, '972, Gopinath Nagar , Guwahati, Assam', 'Sold', '21-03-2021', 10101, 20011, 30001),
+(19182, '626, Blue Heights, Guwahati Airport , Guwahati, Assam', 'Sold', '15-02-2021', 10102, 20012, 30002),
+(19183, '105, Galaxy, Bharalumukh , Guwahati, Assam', 'Sold', '11-02-2021', 10103, 20013, 30003),
+(19184, '107, Gokuldham Society, Bharalumukh , Guwahati, Assam', 'Sold', '25-11-2020', 10104, 20014, 30004),
+(19185, '136, Sunnyhill, Beltala , Guwahati, Assam', 'Sold', '14-09-2020', 10105, 20015, 30005),
+(19186, '884, Russett House, Azara , Guwahati, Assam', 'Sold', '12-01-2021', 10106, 20016, 30006),
+(19187, '356, Paltanbazar , Guwahati, Assam', 'Sold', '14-03-2021', 10107, 20017, 30007),
+(19188, '467, Jewel of Chembur, Khanapara , Guwahati, Assam', 'Sold', '16-02-2021', 10108, 20018, 30008),
+(19189, '738, Pandu Rly Colony , Guwahati, Assam', 'Sold', '23-01-2021', 10109, 20019, 30009),
+(19190, '959, Variety bazaar, Fancy Bazar , Guwahati, Assam', 'Sold', '11-03-2021', 10101, 20020, 30010),
+(19191, '777, Blue Heights, Binova Nagar , Guwahati, Assam', 'Rented', '11-03-2021', 10102, 20021, 30011),
+(19192, '651, Crimson Bay, Bamunimaidan , Guwahati, Assam', 'Rented', '05-02-2021', 10103, 20022, 30012),
+(19193, '173, Guwahati Airport , Guwahati, Assam', 'Rented', '10-02-2021', 10104, 20023, 30013),
+(19194, '938, Zoo Road , Guwahati, Assam', 'Rented', '25-03-2021', 10105, 20024, 30014),
+(19195, '816, Paltanbazar , Guwahati, Assam', 'Rented', '14-09-2020', 10106, 20025, 30015),
+(19196, '422, Gokuldham Society, Amingaon , Guwahati, Assam', 'Rented', '12-01-2021', 10107, 20026, 30016),
+(19197, '950, Assam Tribune , Guwahati, Assam', 'Rented', '14-03-2021', 10108, 20027, 30017),
+(19198, '740, The Acorns, Binova Nagar , Guwahati, Assam', 'Rented', '16-02-2021', 10109, 20028, 30018),
+(19199, '461, Silpukhuri , Guwahati, Assam', 'Rented', '23-01-2021', 10101, 20029, 30019),
+(19200, '370, Pandu Rly Colony , Guwahati, Assam', 'Rented', '11-03-2021', 10102, 20030, 30020);
+Query OK, 20 rows affected (0.02 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+
+CREATE TABLE R_House(
+price int,
+bedrooms int,
+size int,
+L_date varchar(10) NOT NULL,
+p_id int,
+a_id int,
+b_id int,
+FOREIGN KEY (p_id)
+REFERENCES Property(p_id),
+FOREIGN KEY (a_id)
+REFERENCES Agent(a_id),
+FOREIGN KEY (b_id)
+REFERENCES Buyer(b_id)
+);
+Query OK, 0 rows affected (0.12 sec)
+
+desc R_House;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| price    | int         | YES  |     | NULL    |       |
+| bedrooms | int         | YES  |     | NULL    |       |
+| size     | int         | YES  |     | NULL    |       |
+| L_date   | varchar(10) | NO   |     | NULL    |       |
+| p_id     | int         | YES  | MUL | NULL    |       |
+| a_id     | int         | YES  | MUL | NULL    |       |
+| b_id     | int         | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+INSERT INTO R_House (price, bedrooms, size, L_date, p_id, a_id) VALUES
+(10000, 2, 7000, '25-06-2020', 19001, 10101 ),
+(45000, 5, 6400, '08-04-2020', 19002, 10102 ),
+(7000, 3, 8100, '30-04-2020', 19003, 10103 ),
+(14000, 3, 8300, '15-09-2020', 19004, 10104 ),
+(15000, 3, 7700, '14-02-2020', 19005, 10105 ),
+(12000, 3, 7000, '28-04-2020', 19006, 10106 ),
+(6000, 3, 8100, '03-03-2020', 19007, 10107 ),
+(79000, 2, 7200, '07-05-2020', 19008, 10108 ),
+(65000, 3, 7000, '09-07-2020', 19009, 10109 ),
+(48000, 2, 5300, '21-05-2020', 19010, 10101 ),
+(43500, 5, 7600, '29-09-2020', 19011, 10102 ),
+(7000, 3, 5000, '17-01-2021', 19012, 10103 ),
+(28000, 3, 6900, '15-11-2020', 19013, 10104 ),
+(10000, 2, 6700, '08-09-2020', 19014, 10105 ),
+(50000, 5, 4800, '17-04-2020', 19015, 10106 ),
+(29400, 3, 5500, '27-09-2020', 19016, 10107 ),
+(13000, 2, 8100, '05-01-2020', 19017, 10108 ),
+(9000, 3, 5600, '24-02-2020', 19018, 10109 ),
+(4000, 2, 7500, '18-01-2020', 19019, 10101 ),
+(69000, 2, 5600, '27-08-2020', 19020, 10102 ),
+(7000, 2, 6600, '25-01-2021', 19021, 10103 ),
+(4000, 2, 6400, '10-01-2020', 19022, 10104 ),
+(4000, 2, 8400, '13-01-2020', 19023, 10105 ),
+(12000, 3, 5400, '19-02-2021', 19024, 10106 ),
+(31600, 5, 8100, '16-11-2020', 19025, 10107 ),
+(53000, 2, 7700, '28-05-2020', 19026, 10108 ),
+(27000, 3, 8000, '29-09-2020', 19027, 10109 ),
+(35600, 5, 5100, '22-02-2021', 19028, 10101 ),
+(39000, 1, 6100, '13-10-2020', 19029, 10102 ),
+(15300, 3, 5600, '29-10-2020', 19030, 10103 ),
+(12000, 2, 5000, '13-08-2020', 19031, 10104 ),
+(6000, 1, 7700, '13-08-2020', 19032, 10105 ),
+(37500, 5, 8100, '28-05-2020', 19033, 10106 ),
+(50000, 5, 6000, '06-05-2020', 19034, 10107 ),
+(6000, 2, 8200, '23-02-2020', 19035, 10108 ),
+(41900, 5, 7500, '18-09-2020', 19036, 10109 ),
+(44600, 5, 6700, '06-05-2020', 19037, 10101 ),
+(11000, 2, 8100, '25-01-2020', 19038, 10102 ),
+(15000, 3, 7300, '29-01-2021', 19039, 10103 ),
+(28100, 3, 5300, '09-05-2020', 19040, 10104 ),
+(15000, 1, 5200, '17-04-2020', 19041, 10105 ),
+(13000, 1, 6300, '12-12-2020', 19042, 10106 ),
+(41800, 5, 4900, '01-01-2020', 19043, 10107 ),
+(62000, 3, 5300, '04-01-2021', 19044, 10108 ),
+(27700, 3, 7300, '20-07-2020', 19045, 10109 ),
+(79000, 2, 7800, '22-01-2020', 19046, 10101 ),
+(24400, 3, 7400, '29-03-2020', 19047, 10102 ),
+(85000, 2, 8500, '15-02-2021', 19048, 10103 ),
+(8000, 3, 5400, '13-02-2020', 19049, 10104 ),
+(8000, 1, 6200, '19-08-2020', 19050, 10105 ),
+(23400, 3, 6000, '19-06-2020', 19051, 10106 ),
+(4000, 2, 8300, '17-05-2020', 19052, 10107 ),
+(7000, 3, 5200, '22-03-2020', 19053, 10108 ),
+(29400, 3, 7900, '22-07-2020', 19054, 10109 ),
+(26300, 3, 5700, '12-02-2021', 19055, 10101 ),
+(45000, 5, 8400, '29-11-2020', 19056, 10102 ),
+(15000, 3, 6400, '19-01-2021', 19057, 10103 ),
+(43800, 5, 7500, '28-01-2020', 19058, 10104 ),
+(39000, 5, 6600, '13-08-2020', 19059, 10105 ),
+(12000, 2, 4800, '12-04-2020', 19060, 10106 ),
+(23700, 3, 5600, '03-05-2020', 19061, 10107 ),
+(15000, 2, 4800, '03-10-2020', 19062, 10108 ),
+(7000, 1, 6000, '31-01-2021', 19063, 10109 ),
+(46500, 5, 5800, '04-06-2020', 19064, 10101 ),
+(41500, 5, 4800, '09-07-2020', 19065, 10102 ),
+(40600, 5, 7500, '09-04-2020', 19066, 10103 ),
+(5000, 3, 6400, '24-09-2020', 19067, 10104 ),
+(10000, 2, 6700, '24-02-2020', 19068, 10105 ),
+(18500, 3, 5100, '19-12-2020', 19069, 10106 ),
+(13000, 2, 7000, '04-10-2020', 19070, 10107 ),
+(32200, 5, 5500, '18-09-2020', 19071, 10108 ),
+(25000, 3, 6200, '26-12-2020', 19072, 10109 ),
+(6000, 2, 8500, '04-12-2020', 19073, 10101 ),
+(25000, 3, 4800, '28-09-2020', 19074, 10102 ),
+(13000, 3, 6300, '06-01-2020', 19075, 10103 ),
+(14000, 1, 7100, '15-12-2020', 19076, 10104 ),
+(98000, 2, 5500, '07-09-2020', 19077, 10105 ),
+(47200, 5, 8000, '01-08-2020', 19078, 10106 ),
+(49700, 5, 5200, '08-01-2021', 19079, 10107 ),
+(80000, 2, 7600, '18-05-2020', 19080, 10108 ),
+(6000, 3, 5400, '24-09-2020', 19081, 10109 ),
+(11000, 1, 7800, '03-02-2020', 19082, 10101 ),
+(39300, 5, 5400, '25-02-2021', 19083, 10102 ),
+(11000, 1, 5300, '06-12-2020', 19084, 10103 ),
+(14000, 3, 4800, '21-11-2020', 19085, 10104 ),
+(10000, 1, 5000, '15-06-2020', 19086, 10105 ),
+(5000, 1, 5400, '29-12-2020', 19087, 10106 ),
+(47200, 5, 7900, '25-05-2020', 19088, 10107 ),
+(41000, 5, 7300, '15-08-2020', 19089, 10108 ),
+(46200, 5, 7200, '02-04-2020', 19090, 10109 );
+Query OK, 90 rows affected (0.03 sec)
+Records: 90  Duplicates: 0  Warnings: 0
+
+INSERT INTO R_House (price, bedrooms, size, L_date, p_id, a_id, b_id) VALUES
+(12000, 3, 7300, '22-04-2020', 19191, 10102, 30011),
+(14000, 2, 6100, '06-09-2020', 19192, 10103, 30012),
+(10000, 3, 7900, '29-03-2020', 19193, 10104, 30013),
+(45600, 5, 5000, '06-01-2021', 19194, 10105, 30014),
+(43400, 5, 6000, '17-06-2020', 19195, 10106, 30015),
+(12000, 1, 5100, '02-02-2020', 19196, 10107, 30016),
+(6000, 1, 5100, '29-04-2020', 19197, 10108, 30017),
+(42300, 5, 4900, '05-01-2020', 19198, 10109, 30018),
+(36100, 5, 7300, '24-08-2020', 19199, 10101, 30019),
+(9000, 2, 6100, '03-04-2020', 19200, 10102, 30020);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+
+
+CREATE TABLE S_House(
+price int,
+bedrooms int,
+size int,
+L_date varchar(10) NOT NULL,
+p_id int,
+a_id int,
+b_id int,
+FOREIGN KEY (p_id)
+REFERENCES Property(p_id),
+FOREIGN KEY (a_id)
+REFERENCES Agent(a_id),
+FOREIGN KEY (b_id)
+REFERENCES Buyer(b_id)
+);
+Query OK, 0 rows affected (0.13 sec)
+
+desc S_House;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| price    | int         | YES  |     | NULL    |       |
+| bedrooms | int         | YES  |     | NULL    |       |
+| size     | int         | YES  |     | NULL    |       |
+| L_date   | varchar(10) | NO   |     | NULL    |       |
+| p_id     | int         | YES  | MUL | NULL    |       |
+| a_id     | int         | YES  | MUL | NULL    |       |
+| b_id     | int         | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.04 sec)
+
+INSERT INTO S_House (price, bedrooms, size, L_date, p_id, a_id) VALUES
+(33400000, 5, 7300, '04-03-2020', 19091, 10101 ),
+(100000, 3, 7700, '04-04-2020', 19092, 10102 ),
+(110000, 3, 7000, '25-02-2021', 19093, 10103 ),
+(28200000, 3, 5700, '25-08-2020', 19094, 10104 ),
+(110000, 3, 6900, '01-01-2020', 19095, 10105 ),
+(21300000, 3, 7600, '26-02-2021', 19096, 10106 ),
+(60000, 2, 5700, '13-03-2020', 19097, 10107 ),
+(38400000, 5, 6500, '20-01-2020', 19098, 10108 ),
+(130000, 2, 5300, '01-04-2020', 19099, 10109 ),
+(24100000, 3, 7200, '23-02-2020', 19100, 10101 ),
+(32900000, 5, 5700, '21-01-2021', 19101, 10102 ),
+(9100000, 2, 7000, '25-12-2020', 19102, 10103 ),
+(7500000, 2, 7300, '26-01-2020', 19103, 10104 ),
+(29200000, 3, 6900, '13-07-2020', 19104, 10105 ),
+(20400000, 3, 7200, '05-02-2020', 19105, 10106 ),
+(140000, 3, 7400, '27-09-2020', 19106, 10107 ),
+(30600000, 5, 7900, '23-01-2020', 19107, 10108 ),
+(110000, 2, 4800, '04-10-2020', 19108, 10109 ),
+(90000, 3, 7900, '20-01-2020', 19109, 10101 ),
+(45600000, 5, 7400, '18-01-2020', 19110, 10102 ),
+(41400000, 5, 7600, '18-01-2021', 19111, 10103 ),
+(44100000, 5, 6500, '05-03-2020', 19112, 10104 ),
+(50000, 3, 6100, '08-05-2020', 19113, 10105 ),
+(70000, 3, 7400, '02-08-2020', 19114, 10106 ),
+(3100000, 1, 5700, '28-03-2020', 19115, 10107 ),
+(140000, 2, 4800, '19-05-2020', 19116, 10108 ),
+(130000, 2, 5400, '19-05-2020', 19117, 10109 ),
+(36100000, 5, 6100, '11-06-2020', 19118, 10101 ),
+(17700000, 3, 7700, '13-11-2020', 19119, 10102 ),
+(8600000, 2, 4900, '04-11-2020', 19120, 10103 ),
+(38200000, 5, 8500, '21-03-2020', 19121, 10104 ),
+(38400000, 5, 4900, '13-12-2020', 19122, 10105 ),
+(2000000, 2, 5000, '09-01-2021', 19123, 10106 ),
+(26100000, 3, 7600, '21-01-2021', 19124, 10107 ),
+(60000, 3, 7000, '15-10-2020', 19125, 10108 ),
+(16500000, 3, 4800, '15-02-2021', 19126, 10109 ),
+(110000, 1, 5700, '09-02-2020', 19127, 10101 ),
+(8000000, 2, 5400, '25-01-2020', 19128, 10102 ),
+(18400000, 3, 6700, '03-07-2020', 19129, 10103 ),
+(500000, 1, 5600, '02-01-2021', 19130, 10104 ),
+(6800000, 3, 6500, '14-02-2021', 19131, 10105 ),
+(130000, 1, 6700, '10-03-2020', 19132, 10106 ),
+(500000, 2, 5400, '31-01-2020', 19133, 10107 ),
+(48600000, 5, 6800, '08-07-2020', 19134, 10108 ),
+(100000, 2, 7300, '28-03-2020', 19135, 10109 ),
+(18400000, 3, 5900, '27-07-2020', 19136, 10101 ),
+(41700000, 5, 7700, '20-06-2020', 19137, 10102 ),
+(27200000, 3, 5000, '08-03-2020', 19138, 10103 ),
+(23900000, 3, 6100, '11-02-2020', 19139, 10104 ),
+(800000, 2, 5500, '16-09-2020', 19140, 10105 ),
+(700000, 3, 7000, '02-03-2020', 19141, 10106 ),
+(3300000, 3, 6500, '16-03-2020', 19142, 10107 ),
+(700000, 2, 5400, '11-01-2021', 19143, 10108 ),
+(31700000, 5, 7800, '28-09-2020', 19144, 10109 ),
+(22600000, 3, 6900, '31-03-2020', 19145, 10101 ),
+(900000, 2, 5200, '24-06-2020', 19146, 10102 ),
+(6300000, 2, 7800, '01-11-2020', 19147, 10103 ),
+(27400000, 3, 5700, '03-02-2020', 19148, 10104 ),
+(24100000, 3, 5000, '31-10-2020', 19149, 10105 ),
+(400000, 1, 5300, '22-03-2020', 19150, 10106 ),
+(150000, 3, 7100, '15-08-2020', 19151, 10107 ),
+(47500000, 5, 5300, '22-08-2020', 19152, 10108 ),
+(130000, 1, 5400, '10-01-2021', 19153, 10109 ),
+(27800000, 3, 5300, '19-11-2020', 19154, 10101 ),
+(38300000, 5, 5500, '04-08-2020', 19155, 10102 ),
+(90000, 1, 5600, '05-05-2020', 19156, 10103 ),
+(110000, 1, 8100, '13-03-2020', 19157, 10104 ),
+(18000000, 3, 6700, '16-04-2020', 19158, 10105 ),
+(43500000, 5, 8300, '19-11-2020', 19159, 10106 ),
+(40500000, 5, 5500, '12-03-2020', 19160, 10107 ),
+(48700000, 5, 8400, '05-11-2020', 19161, 10108 ),
+(22300000, 3, 7500, '02-03-2020', 19162, 10109 ),
+(43700000, 5, 6200, '15-02-2020', 19163, 10101 ),
+(120000, 2, 4900, '21-06-2020', 19164, 10102 ),
+(150000, 3, 5200, '15-09-2020', 19165, 10103 ),
+(44900000, 5, 7700, '27-08-2020', 19166, 10104 ),
+(31100000, 5, 5000, '02-04-2020', 19167, 10105 ),
+(140000, 1, 7500, '15-07-2020', 19168, 10106 ),
+(110000, 1, 7400, '10-12-2020', 19169, 10107 ),
+(33000000, 5, 8100, '21-03-2020', 19170, 10108 ),
+(21600000, 3, 5400, '10-04-2020', 19171, 10109 ),
+(100000, 3, 8300, '18-06-2020', 19172, 10101 ),
+(29300000, 3, 5900, '03-01-2021', 19173, 10102 ),
+(34800000, 5, 5400, '06-07-2020', 19174, 10103 ),
+(28000000, 3, 5300, '30-06-2020', 19175, 10104 ),
+(60000, 3, 6900, '27-03-2020', 19176, 10105 ),
+(130000, 2, 5300, '24-06-2020', 19177, 10106 ),
+(18800000, 3, 6500, '13-10-2020', 19178, 10107 ),
+(5300000, 3, 8200, '27-02-2020', 19179, 10108 ),
+(100000, 1, 8100, '31-07-2020', 19180, 10109 );
+Query OK, 90 rows affected (0.03 sec)
+Records: 90  Duplicates: 0  Warnings: 0
+
+
+INSERT INTO S_House (price, bedrooms, size, L_date, p_id, a_id, b_id) VALUES
+(150000, 1, 8500, '28-08-2020', 19181, 10101, 30001),
+(37200000, 5, 7500, '24-09-2020', 19182, 10102, 30002),
+(37000000, 5, 6100, '10-08-2020', 19183, 10103, 30003),
+(150000, 2, 7000, '08-04-2020', 19184, 10104, 30004),
+(9200000, 2, 6200, '03-08-2020', 19185, 10105, 30005),
+(47300000, 5, 7900, '15-12-2020', 19186, 10106, 30006),
+(80000, 3, 5000, '17-07-2020', 19187, 10107, 30007),
+(110000, 3, 6000, '04-02-2020', 19188, 10108, 30008),
+(46200000, 5, 5100, '16-06-2020', 19189, 10109, 30009),
+(80000, 2, 4900, '09-09-2020', 19190, 10101, 30010);
+Query OK, 10 rows affected (0.03 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+                                                                          QUERIES
+
+(a) Find addresses of homes in your city (for example Guwahati) with rent between Rs.20,000 and Rs. 40,000 per month.
+Sol:-select p.address,p.p_id from property p,r_house r where r.p_id = p.p_id and p.status = 'for rent' and (r.price>=20000 and r.price <=40000);
+
+(b) Find details of homes for rent in G.S.Road (you can use the name of another locality if your city is different)with at least 2 bedrooms and costing less
+ than Rs.10,000 per month. Show the contact number(s) of agents who can show you these properties.
+Sol:- select p.address,a.a_ph_no from property p,r_house r,agent a where p.p_id = r.p_id and r.a_id = a.a_id and address like '%Fancy Bazar , Guwahati%' and r.bedrooms>=2 
+      and r.price<50000 and p.status='for rent';
+
+(c) Find the name of the agent who has sold the most property in the year 2021 by total amount in rupees.
+Sol:- select a_name,sum(price) as p from (select a_name, s_date ,p_id from agent natural join property where status = "sold" and s_date like '%2021%')as 
+      ad natural join s_house group by a_name order by p desc limit 1;
+
+(d) Find the addresses of homes in your city that are available for sale and that has at least 2 bed rooms. List the
+asking price and the number of bedrooms, with other details that may be necessary.
+Sol:-select * from property p,s_house s where p.p_id = s.p_id and s.bedrooms>=2 and p.b_id is NULL;
+     .............................................................................................
+     select * from property p,s_house s where p.p_id = s.p_id and s.bedrooms>=2 and status ="for sell";
+
+(e) List the details of the most expensive houses and the houses with the highest rent, in the database.
+Sol:- (select * from property,r_house where property.p_id = r_house.p_id and price = (select MAX(price) from r_house)) UNION
+      ( select * from property,s_house where property.p_id = s_house.p_id and price = (select MAX(price) from s_house));
+
+
+
+
+
